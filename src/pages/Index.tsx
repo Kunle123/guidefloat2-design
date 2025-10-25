@@ -1,7 +1,7 @@
-import Landing from "./Landing";
+import { OnboardingWizard } from "@/components/onboarding/OnboardingWizard";
 
 const Index = () => {
-  return <Landing />;
+  return <OnboardingWizard />;
 };
 
 export default Index;
