@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Clock, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const recentGuides = [
   {
@@ -28,11 +29,18 @@ const recentGuides = [
 ];
 
 export const RecentGuides = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold">Recent Guides</h2>
-        <button className="text-xs text-primary hover:underline">View All</button>
+        <button
+          className="text-xs text-primary hover:underline"
+          onClick={() => navigate("/library")}
+        >
+          View All
+        </button>
       </div>
 
       <div className="space-y-2">
@@ -40,6 +48,7 @@ export const RecentGuides = () => {
           <Card
             key={guide.id}
             className="p-3 hover:shadow-md transition-all cursor-pointer group"
+            onClick={() => navigate(`/guide/${guide.id}`)}
           >
             <div className="space-y-2">
               <div className="flex items-start justify-between">

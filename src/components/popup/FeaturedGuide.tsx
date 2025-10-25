@@ -2,8 +2,11 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, Clock, TrendingUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const FeaturedGuide = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-2">
       <h2 className="text-sm font-semibold">Featured Guide</h2>
@@ -37,7 +40,11 @@ export const FeaturedGuide = () => {
             </div>
           </div>
 
-          <Button className="w-full" variant="cta">
+          <Button
+            className="w-full"
+            variant="cta"
+            onClick={() => navigate("/guide/1")}
+          >
             Start Guide
           </Button>
         </div>
