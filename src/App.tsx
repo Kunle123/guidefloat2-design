@@ -19,6 +19,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/library" element={<Navigate to="/" replace />} />
           <Route path="/popup" element={<Navigate to="/" replace />} />
+          <Route path="/guide" element={<Navigate to="/guide/hubspot-setup" replace />} />
           <Route path="/guide/:id" element={<GuideExecution />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
