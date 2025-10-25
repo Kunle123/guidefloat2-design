@@ -1,12 +1,13 @@
 import { GuideConfig } from "@/types/guide";
 import { hubspotGuide } from "./hubspot";
+import { salesforceGuide } from "./salesforce";
+import { slackGuide } from "./slack";
 
 // Central registry of all available guides
 export const guides: Record<string, GuideConfig> = {
   "hubspot-setup": hubspotGuide,
-  // Future guides can be added here
-  // "salesforce-setup": salesforceGuide,
-  // "slack-integration": slackGuide,
+  "salesforce-setup": salesforceGuide,
+  "slack-integration": slackGuide,
 };
 
 export const getGuideById = (id: string): GuideConfig | undefined => {

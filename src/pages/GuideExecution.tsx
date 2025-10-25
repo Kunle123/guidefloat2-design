@@ -72,7 +72,7 @@ const GuideExecution = () => {
   
   useEffect(() => {
     if (!guide) {
-      navigate("/library");
+      navigate("/");
     }
   }, [guide, navigate]);
 
@@ -125,7 +125,7 @@ const GuideExecution = () => {
   const handleLaunchApp = () => {
     const appUrl = `https://www.hubspot.com/products/get-started?utm_source=affiliate`;
     window.open(appUrl, '_blank');
-    navigate("/popup");
+    navigate("/");
   };
 
   const renderStepContent = () => {
