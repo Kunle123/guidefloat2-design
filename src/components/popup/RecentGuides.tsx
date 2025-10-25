@@ -6,21 +6,21 @@ import { useNavigate } from "react-router-dom";
 
 const recentGuides = [
   {
-    id: 1,
+    id: "hubspot-setup",
     title: "HubSpot CRM Setup",
     progress: 65,
     timeLeft: "10 min left",
     category: "Marketing",
   },
   {
-    id: 2,
+    id: "shopify-setup",
     title: "Shopify Store Launch",
     progress: 30,
     timeLeft: "25 min left",
     category: "E-commerce",
   },
   {
-    id: 3,
+    id: "google-ads",
     title: "Google Ads Campaign",
     progress: 90,
     timeLeft: "3 min left",

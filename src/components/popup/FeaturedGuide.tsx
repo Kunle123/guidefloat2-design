@@ -43,7 +43,7 @@ export const FeaturedGuide = () => {
           <Button
             className="w-full"
             variant="cta"
-            onClick={() => navigate("/guide/1")}
+            onClick={() => navigate("/guide/hubspot-setup")}
           >
             Start Guide
           </Button>

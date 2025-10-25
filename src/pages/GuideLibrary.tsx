@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const guides = [
   {
-    id: 1,
+    id: "hubspot-setup",
     title: "HubSpot CRM Complete Setup",
     description: "Launch your HubSpot workspace with pre-filled data and save 20+ setup steps",
     category: "Marketing",
@@ -21,7 +21,7 @@ const guides = [
     featured: true,
   },
   {
-    id: 2,
+    id: "shopify-setup",
     title: "Shopify Store Launch",
     description: "Set up your complete e-commerce store from scratch to first sale",
     category: "E-commerce",
@@ -32,7 +32,7 @@ const guides = [
     featured: false,
   },
   {
-    id: 3,
+    id: "google-ads",
     title: "Google Ads Campaign Setup",
     description: "Create your first profitable ad campaign with expert guidance",
     category: "Advertising",
@@ -43,7 +43,7 @@ const guides = [
     featured: false,
   },
   {
-    id: 4,
+    id: "wordpress-blog",
     title: "WordPress Blog Launch",
     description: "Build and publish your first professional blog in under an hour",
     category: "Business",
@@ -54,7 +54,7 @@ const guides = [
     featured: false,
   },
   {
-    id: 5,
+    id: "stripe-payment",
     title: "Stripe Payment Integration",
     description: "Add payment processing to your website with Stripe",
     category: "Development",
@@ -65,7 +65,7 @@ const guides = [
     featured: false,
   },
   {
-    id: 6,
+    id: "mailchimp-automation",
     title: "Mailchimp Email Automation",
     description: "Set up automated email sequences to nurture leads",
     category: "Marketing",
