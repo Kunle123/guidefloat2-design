@@ -70,8 +70,13 @@ const GuideExecution = () => {
 
   const guide = getGuideById(id || "hubspot-setup");
   
+  useEffect(() => {
+    if (!guide) {
+      navigate("/library");
+    }
+  }, [guide, navigate]);
+
   if (!guide) {
-    navigate("/library");
     return null;
   }
 
