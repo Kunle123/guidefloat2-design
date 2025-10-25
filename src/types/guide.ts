@@ -7,6 +7,14 @@ export interface GuideStep {
   component?: ComponentType<any>;
 }
 
+export interface GuideBranding {
+  primaryColor: string; // HSL format
+  secondaryColor?: string; // HSL format
+  accentColor?: string; // HSL format
+  fontFamily?: string;
+  logo?: string;
+}
+
 export interface GuideConfig {
   id: string;
   title: string;
@@ -14,5 +22,6 @@ export interface GuideConfig {
   category: string;
   estimatedTime: string;
   difficulty: "Beginner" | "Intermediate" | "Advanced";
+  branding: GuideBranding;
   steps: GuideStep[];
 }

@@ -13,6 +13,12 @@ export const hubspotGuide: GuideConfig = {
   category: "CRM & Sales",
   estimatedTime: "15 min",
   difficulty: "Beginner",
+  branding: {
+    primaryColor: "18 100% 56%", // HubSpot Orange
+    secondaryColor: "207 92% 54%", // HubSpot Blue
+    accentColor: "18 100% 64%", // Lighter orange for accents
+    fontFamily: "'Lexend', sans-serif",
+  },
   steps: [
     {
       id: 1,

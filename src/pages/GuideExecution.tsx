@@ -1,4 +1,4 @@
-import { useState, ComponentType } from "react";
+import { useState, ComponentType, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -78,6 +78,20 @@ const GuideExecution = () => {
   const progress = (currentStep / guide.steps.length) * 100;
   const currentStepData = guide.steps[currentStep - 1];
   const isComplete = currentStep > guide.steps.length;
+
+  // Apply guide branding dynamically
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--guide-primary', guide.branding.primaryColor);
+    root.style.setProperty('--guide-secondary', guide.branding.secondaryColor || guide.branding.primaryColor);
+    root.style.setProperty('--guide-accent', guide.branding.accentColor || guide.branding.primaryColor);
+    
+    return () => {
+      root.style.removeProperty('--guide-primary');
+      root.style.removeProperty('--guide-secondary');
+      root.style.removeProperty('--guide-accent');
+    };
+  }, [guide.branding]);
 
   const updateFormData = (data: Partial<FormData>) => {
     setFormData((prev) => ({ ...prev, ...data }));
@@ -171,12 +185,20 @@ const GuideExecution = () => {
           "shadow-2xl transition-all",
           isExpanded ? "w-full max-w-4xl h-[600px]" : "w-full max-w-sm h-[500px]"
         )}
+        style={{
+          fontFamily: guide.branding.fontFamily || 'inherit',
+        }}
       >
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b bg-muted/50">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-[hsl(25_100%_60%)] flex items-center justify-center">
+              <div 
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{
+                  background: `linear-gradient(135deg, hsl(var(--guide-primary)), hsl(var(--guide-accent)))`,
+                }}
+              >
                 <Check className="h-4 w-4 text-white" />
               </div>
               <div>
