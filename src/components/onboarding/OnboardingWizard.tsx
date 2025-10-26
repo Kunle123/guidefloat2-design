@@ -33,8 +33,8 @@ interface FormData {
   senderEmail: string;
   domain: string;
   // Step 6
+  platform: string;
   teammates: string;
-  dashboardFocus: string;
 }
 
 const TOTAL_STEPS = 6;
@@ -58,18 +58,32 @@ export const OnboardingWizard = () => {
     senderName: "",
     senderEmail: "",
     domain: "",
+    platform: "",
     teammates: "",
-    dashboardFocus: "",
   });
 
   const updateFormData = (data: Partial<FormData>) => {
     setFormData((prev) => ({ ...prev, ...data }));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentStep < TOTAL_STEPS) {
       setCurrentStep((prev) => prev + 1);
     } else {
+      // Save to chrome storage when moving to success screen
+      try {
+        const w = window as any;
+        if (w.chrome && w.chrome.storage) {
+          await w.chrome.storage.local.set({ guidefloatData: formData });
+          console.log('User data saved to chrome storage');
+        } else {
+          // Fallback to localStorage for testing
+          localStorage.setItem('guidefloatData', JSON.stringify(formData));
+          console.log('User data saved to localStorage');
+        }
+      } catch (error) {
+        console.error('Failed to save data:', error);
+      }
       setCurrentStep(TOTAL_STEPS + 1); // Success screen
     }
   };
@@ -81,9 +95,17 @@ export const OnboardingWizard = () => {
   };
 
   const handleLaunchHubSpot = () => {
-    // In a real implementation, this would include the affiliate ID
-    const hubspotUrl = `https://www.hubspot.com/products/get-started?utm_source=affiliate`;
-    window.open(hubspotUrl, '_blank');
+    console.log("Launching platform with data:", formData);
+    
+    // Build affiliate URL based on platform
+    const platformUrls: Record<string, string> = {
+      hubspot: `https://app.hubspot.com/signup?email=${encodeURIComponent(formData.email)}&company=${encodeURIComponent(formData.companyName)}`,
+      shopify: `https://www.shopify.com/signup?ref=guidefloat&email=${encodeURIComponent(formData.email)}`,
+      semrush: `https://www.semrush.com/signup/?ref=guidefloat&email=${encodeURIComponent(formData.email)}`
+    };
+    
+    const url = platformUrls[formData.platform] || platformUrls.hubspot;
+    window.open(url, "_blank");
   };
 
   const renderStep = () => {
@@ -142,7 +164,17 @@ export const OnboardingWizard = () => {
           />
         );
       case 7:
-        return <SuccessScreen onLaunchHubSpot={handleLaunchHubSpot} />;
+        const platformNames: Record<string, string> = {
+          hubspot: "HubSpot",
+          shopify: "Shopify", 
+          semrush: "SEMrush"
+        };
+        return (
+          <SuccessScreen 
+            onLaunchHubSpot={handleLaunchHubSpot}
+            platformName={platformNames[formData.platform] || "HubSpot"}
+          />
+        );
       default:
         return null;
     }

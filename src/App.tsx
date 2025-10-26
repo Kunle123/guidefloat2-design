@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import Onboarding from "./pages/Onboarding";
 import ExtensionPopup from "./pages/ExtensionPopup";
 import GuideLibrary from "./pages/GuideLibrary";
 import GuideExecution from "./pages/GuideExecution";
@@ -19,6 +20,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/popup" element={<ExtensionPopup />} />
           <Route path="/library" element={<GuideLibrary />} />
           <Route path="/guide/:id" element={<GuideExecution />} />

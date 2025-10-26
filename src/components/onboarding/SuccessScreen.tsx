@@ -6,9 +6,10 @@ import { useWindowSize } from "@/hooks/use-window-size";
 
 interface SuccessScreenProps {
   onLaunchHubSpot: () => void;
+  platformName?: string;
 }
 
-export const SuccessScreen = ({ onLaunchHubSpot }: SuccessScreenProps) => {
+export const SuccessScreen = ({ onLaunchHubSpot, platformName = "HubSpot" }: SuccessScreenProps) => {
   const { width, height } = useWindowSize();
 
   return (
@@ -57,7 +58,7 @@ export const SuccessScreen = ({ onLaunchHubSpot }: SuccessScreenProps) => {
             Awesome — you're all set!
           </h1>
           <p className="text-lg text-muted-foreground max-w-md mx-auto">
-            We've saved your details and will walk you through HubSpot's setup next.
+            We've saved your details and will walk you through {platformName}'s setup next.
           </p>
         </div>
 
@@ -70,7 +71,7 @@ export const SuccessScreen = ({ onLaunchHubSpot }: SuccessScreenProps) => {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-success mt-0.5">✓</span>
-              <span>Your information is pre-filled in HubSpot's forms</span>
+              <span>Your information is pre-filled in {platformName}'s forms</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-success mt-0.5">✓</span>
@@ -85,11 +86,11 @@ export const SuccessScreen = ({ onLaunchHubSpot }: SuccessScreenProps) => {
           size="lg"
           className="text-lg px-8 py-6 h-auto"
         >
-          Launch HubSpot Setup
+          Launch {platformName} Setup
         </Button>
 
         <p className="text-xs text-muted-foreground">
-          Clicking above will open HubSpot in a new window
+          Clicking above will open {platformName} in a new window
         </p>
       </motion.div>
     </>
