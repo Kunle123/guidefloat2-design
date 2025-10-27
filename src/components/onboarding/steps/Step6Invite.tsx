@@ -10,33 +10,11 @@ import { useState } from "react";
 interface Step6Props {
   data: {
     teammates: string;
-    platform: string;
   };
   onUpdate: (data: any) => void;
   onNext: () => void;
   onBack: () => void;
 }
-
-const platforms = [
-  { 
-    value: "hubspot", 
-    label: "HubSpot", 
-    description: "CRM & Marketing Hub",
-    icon: "📊"
-  },
-  { 
-    value: "shopify", 
-    label: "Shopify", 
-    description: "E-commerce Platform",
-    icon: "🛍️"
-  },
-  { 
-    value: "semrush", 
-    label: "SEMrush", 
-    description: "SEO & Marketing Analytics",
-    icon: "📈"
-  },
-];
 
 export const Step6Invite = ({ data, onUpdate, onNext, onBack }: Step6Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,39 +38,13 @@ export const Step6Invite = ({ data, onUpdate, onNext, onBack }: Step6Props) => {
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 mb-4">
           <UserPlus className="h-8 w-8 text-primary" />
         </div>
-        <h2 className="text-2xl font-bold">Choose your platform</h2>
+        <h2 className="text-2xl font-bold">Invite Your Team</h2>
         <p className="text-sm text-muted-foreground">
-          Select which platform you want to set up first
+          Collaborate with your teammates from day one
         </p>
       </div>
 
       <div className="space-y-6">
-        <div className="space-y-3">
-          <Label>Select Platform to Set Up</Label>
-          <div className="grid grid-cols-1 gap-3">
-            {platforms.map((platform) => (
-              <Card
-                key={platform.value}
-                className={cn(
-                  "p-6 cursor-pointer transition-all hover:shadow-lg border-2",
-                  data.platform === platform.value
-                    ? "border-primary bg-primary/5 shadow-md"
-                    : "border-border hover:border-primary/50"
-                )}
-                onClick={() => onUpdate({ platform: platform.value })}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="text-4xl">{platform.icon}</div>
-                  <div className="flex-1 text-left">
-                    <h3 className="font-semibold text-lg">{platform.label}</h3>
-                    <p className="text-sm text-muted-foreground">{platform.description}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
         <FormInput
           id="teammates"
           label="Invite Teammates (Optional)"

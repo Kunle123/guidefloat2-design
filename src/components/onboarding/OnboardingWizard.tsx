@@ -2,7 +2,8 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { ProgressBar } from "./ProgressBar";
-import { Step1Welcome } from "./steps/Step1Welcome";
+import { Step1Platform } from "./steps/Step1Platform";
+import { Step2Welcome } from "./steps/Step2Welcome";
 import { Step2Business } from "./steps/Step2Business";
 import { Step3Goals } from "./steps/Step3Goals";
 import { Step4CRM } from "./steps/Step4CRM";
@@ -37,7 +38,7 @@ interface FormData {
   teammates: string;
 }
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 7;
 
 export const OnboardingWizard = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -112,7 +113,7 @@ export const OnboardingWizard = () => {
     switch (currentStep) {
       case 1:
         return (
-          <Step1Welcome
+          <Step1Platform
             data={formData}
             onUpdate={updateFormData}
             onNext={handleNext}
@@ -120,7 +121,7 @@ export const OnboardingWizard = () => {
         );
       case 2:
         return (
-          <Step2Business
+          <Step2Welcome
             data={formData}
             onUpdate={updateFormData}
             onNext={handleNext}
@@ -129,7 +130,7 @@ export const OnboardingWizard = () => {
         );
       case 3:
         return (
-          <Step3Goals
+          <Step2Business
             data={formData}
             onUpdate={updateFormData}
             onNext={handleNext}
@@ -138,7 +139,7 @@ export const OnboardingWizard = () => {
         );
       case 4:
         return (
-          <Step4CRM
+          <Step3Goals
             data={formData}
             onUpdate={updateFormData}
             onNext={handleNext}
@@ -147,7 +148,7 @@ export const OnboardingWizard = () => {
         );
       case 5:
         return (
-          <Step5Email
+          <Step4CRM
             data={formData}
             onUpdate={updateFormData}
             onNext={handleNext}
@@ -156,7 +157,7 @@ export const OnboardingWizard = () => {
         );
       case 6:
         return (
-          <Step6Invite
+          <Step5Email
             data={formData}
             onUpdate={updateFormData}
             onNext={handleNext}
@@ -164,6 +165,15 @@ export const OnboardingWizard = () => {
           />
         );
       case 7:
+        return (
+          <Step6Invite
+            data={formData}
+            onUpdate={updateFormData}
+            onNext={handleNext}
+            onBack={handleBack}
+          />
+        );
+      case 8:
         const platformNames: Record<string, string> = {
           hubspot: "HubSpot",
           shopify: "Shopify", 

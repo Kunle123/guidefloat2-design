@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Sparkles } from "lucide-react";
 
-interface Step1Props {
+interface Step2Props {
   data: {
     firstName: string;
     lastName: string;
@@ -12,9 +12,10 @@ interface Step1Props {
   };
   onUpdate: (data: any) => void;
   onNext: () => void;
+  onBack: () => void;
 }
 
-export const Step1Welcome = ({ data, onUpdate, onNext }: Step1Props) => {
+export const Step2Welcome = ({ data, onUpdate, onNext, onBack }: Step2Props) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
@@ -56,9 +57,9 @@ export const Step1Welcome = ({ data, onUpdate, onNext }: Step1Props) => {
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 mb-4">
           <Sparkles className="h-8 w-8 text-primary" />
         </div>
-        <h1 className="text-3xl font-bold tracking-tight">Let's launch your HubSpot workspace</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Welcome! Let's get started</h1>
         <p className="text-muted-foreground max-w-md mx-auto">
-          We'll collect a few details to pre-fill your setup and save you 20+ steps later.
+          We'll collect a few details to pre-fill your setup and save you time.
         </p>
       </div>
 
@@ -89,15 +90,18 @@ export const Step1Welcome = ({ data, onUpdate, onNext }: Step1Props) => {
           label="Email Address"
           value={data.email}
           onChange={(e) => onUpdate({ email: e.target.value })}
-          tooltip="We'll use this to set up your HubSpot account"
+          tooltip="We'll use this to set up your account"
           error={errors.email}
           isValid={!errors.email && data.email.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)}
         />
       </div>
 
-      <div className="flex justify-end pt-4">
+      <div className="flex justify-between pt-4">
+        <Button onClick={onBack} variant="outline" size="lg">
+          Back
+        </Button>
         <Button onClick={handleNext} variant="cta" size="lg" className="min-w-32">
-          Let's start
+          Continue →
         </Button>
       </div>
 
